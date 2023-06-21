@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+<head>
+  <title>Codificador OSIEL PEREZ</title>
+  <script>
+    function codificar() {
+      var palabra = document.getElementById("inputPalabra").value;
+      var desplazamiento = parseInt(document.getElementById("inputDesplazamiento").value);
+      var resultado = "";
+
+      for (var i = 0; i < palabra.length; i++) {
+        var codigo = palabra.charCodeAt(i);
+        
+        if (codigo >= 65 && codigo <= 90) {
+          resultado += String.fromCharCode((codigo - 65 + desplazamiento) % 26 + 65); // Letras mayúsculas
+        } else if (codigo >= 97 && codigo <= 122) {
+          resultado += String.fromCharCode((codigo - 97 + desplazamiento) % 26 + 97); // Letras minúsculas
+        } else {
+          resultado += palabra.charAt(i); // Caracteres que no son letras
+        }
+      }
+
+      document.getElementById("resultado").innerHTML = resultado;
+    }
+  </script>
+</head>
+<body>
+  <h1>Codificador OSIEL PEREZ</h1>
+  
+  <label for="inputPalabra">Palabra:</label>
+  <input type="text" id="inputPalabra" name="palabra"><br>
+  
+  <label for="inputDesplazamiento">Desplazamiento:</label>
+  <input type="number" id="inputDesplazamiento" name="desplazamiento" value="1"><br>
+  
+  <button onclick="codificar()">Codificar</button>
+  
+  <h2>Resultado:</h2>
+  <p id="resultado"></p>
+</body>
+</html>
